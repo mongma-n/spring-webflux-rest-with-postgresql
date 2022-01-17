@@ -4,17 +4,21 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.data.annotation.Id;
 
-import javax.persistence.GeneratedValue;
+import javax.persistence.*;
 
-@Scope(scopeName = "request", proxyMode = ScopedProxyMode.TARGET_CLASS)
+@Table(name = "employee")
 public class Employee {
 
     @Id
-    @GeneratedValue
-    int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "name")
     String name;
+
+    @Column(name = "salary")
     long salary;
- 
+
     //Getters and setters
  
     @Override
