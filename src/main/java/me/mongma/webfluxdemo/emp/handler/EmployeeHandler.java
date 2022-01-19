@@ -10,6 +10,9 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.net.URI;
+
+import static org.springframework.web.reactive.function.server.ServerResponse.created;
 import static org.springframework.web.reactive.function.server.ServerResponse.ok;
 
 @Component
@@ -37,11 +40,12 @@ public class EmployeeHandler {
 
     public Mono<ServerResponse> addEmployee(ServerRequest req) {
         Mono<Employee> employee = req.bodyToMono(Employee.class);
-        return ok().body(employee.flatMap(e -> repo.save(e)), Employee.class);
+        return repo.saveAll(employee)
+                .flatMap(emp -> created(URI.create("/v1/employee/")).build())
+                .next();
     }
 
     public Mono<ServerResponse> modifyEmployee(ServerRequest req) {
-
         return null;
     }
 
