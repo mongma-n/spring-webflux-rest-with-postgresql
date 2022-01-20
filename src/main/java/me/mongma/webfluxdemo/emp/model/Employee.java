@@ -1,28 +1,32 @@
 package me.mongma.webfluxdemo.emp.model;
 
-import org.springframework.context.annotation.Scope;
-import org.springframework.context.annotation.ScopedProxyMode;
+import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.domain.Persistable;
 
-import javax.persistence.*;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Table;
 
-@Table(name = "employee")
-public class Employee {
+
+@Data
+@Table
+public class Employee implements Persistable<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(name = "name")
+    long seq;
     String name;
+    int salary;
+    String department;
 
-    @Column(name = "salary")
-    long salary;
-
-    //Getters and setters
- 
     @Override
-    public String toString() {
-        return "Employee [id=" + id + ", name=" + name + ", salary=" + salary + "]";
+    public Long getId() {
+        return null;
+    }
+
+    @Override
+    public boolean isNew() {
+        return true;
     }
 }
