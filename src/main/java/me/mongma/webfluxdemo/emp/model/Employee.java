@@ -2,31 +2,26 @@ package me.mongma.webfluxdemo.emp.model;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.domain.Persistable;
-
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Table;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 
 
 @Data
-@Table
-public class Employee implements Persistable<Long> {
+@Table("employee")
+public class Employee {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column("seq")
     long seq;
+
+    @Column("name")
     String name;
+
+    @Column("salary")
     int salary;
+
+    @Column("department")
     String department;
 
-    @Override
-    public Long getId() {
-        return null;
-    }
 
-    @Override
-    public boolean isNew() {
-        return true;
-    }
 }
