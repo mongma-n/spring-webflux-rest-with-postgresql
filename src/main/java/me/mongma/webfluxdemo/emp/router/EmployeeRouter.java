@@ -11,9 +11,8 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 
-
-@RequiredArgsConstructor
 @Component
+@RequiredArgsConstructor
 public class EmployeeRouter {
 
     private final EmployeeHandler handler;

@@ -1,8 +1,8 @@
 package me.mongma.webfluxdemo.emp.handler;
 
+import lombok.RequiredArgsConstructor;
 import me.mongma.webfluxdemo.emp.model.Employee;
 import me.mongma.webfluxdemo.emp.repository.EmployeeRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
@@ -12,13 +12,14 @@ import reactor.core.publisher.Mono;
 
 import java.net.URI;
 
-import static org.springframework.web.reactive.function.server.ServerResponse.*;
+import static org.springframework.web.reactive.function.server.ServerResponse.created;
+import static org.springframework.web.reactive.function.server.ServerResponse.ok;
 
 @Component
+@RequiredArgsConstructor
 public class EmployeeHandler {
 
-    @Autowired
-    private EmployeeRepository repo;
+    private final EmployeeRepository repo;
 
     public Mono<ServerResponse> getOne(ServerRequest req) {
         return repo.findById(Long.valueOf(req.pathVariable("id")))
