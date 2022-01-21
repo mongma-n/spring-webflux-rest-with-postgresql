@@ -57,7 +57,7 @@
             <artifactId>spring-jdbc</artifactId>
         </dependency>
         <!--  Reactive Mysql -->
-        <dependency>
+<!--        <dependency>
             <groupId>dev.miku</groupId>
             <artifactId>r2dbc-mysql</artifactId>
             <scope>runtime</scope>
@@ -66,10 +66,9 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
-        </dependency>
+        </dependency>-->
 
         <!--  Reactive Postgres -->
-        <!--
         <dependency>
             <groupId>io.r2dbc</groupId>
             <artifactId>r2dbc-postgresql</artifactId>
@@ -80,7 +79,7 @@
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
         </dependency>
-         -->
+
     </dependencies>
 
     <build>
