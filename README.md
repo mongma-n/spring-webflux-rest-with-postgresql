@@ -1,6 +1,16 @@
 # Spring Webflux REST Demo Project
-프로젝트에서 활용 가능하도록 Webflux REST API 부터 Sample Project 만들어 보았습니다.
+프로젝트에서 활용 가능하도록 Webflux REST API 부터 Sample Project 만들어 보았습니다.  
 Spring Reactive Stack 중 Java 기준으로 Functional Endpoints 를 사용하였습니다.
+
+향후 계획은 아래 Web Service 에 필수적인 요소를 추가할 예정입니다.
+```sh
+* Security
+* Web Filter
+* CORS
+* Validation
+* WebClient
+* Cache Control
+```
 
 ## Prerequisites
 
