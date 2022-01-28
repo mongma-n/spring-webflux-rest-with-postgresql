@@ -20,7 +20,7 @@ public class EmployeeRouter {
     @Bean
     public RouterFunction<ServerResponse> routes() {
         return route()
-                .path("/v1/employee", builder -> builder
+                .path("/apis/v1/employee", builder -> builder
                     .nest(accept(MediaType.APPLICATION_JSON), builder1 -> builder1
                         .GET("/", handler::getAll)
                         .GET("/{id}", handler::getOne)

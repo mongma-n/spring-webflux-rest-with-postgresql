@@ -1,10 +1,12 @@
 package me.mongma.webfluxdemo.emp.handler;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import me.mongma.webfluxdemo.emp.model.Employee;
 import me.mongma.webfluxdemo.emp.repository.EmployeeRepository;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Flux;
@@ -15,6 +17,7 @@ import java.net.URI;
 import static org.springframework.web.reactive.function.server.ServerResponse.created;
 import static org.springframework.web.reactive.function.server.ServerResponse.ok;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class EmployeeHandler {
@@ -43,11 +46,13 @@ public class EmployeeHandler {
     public Mono<ServerResponse> addEmployee(ServerRequest req) {
         Mono<Employee> employee = req.bodyToMono(Employee.class);
         return employee
-                .flatMap(emp -> repo.save(emp))
+                .flatMap(repo::save)
                 .flatMap(emp -> created(URI.create("/v1/employee/" + emp.getSeq())).build());
     }
 
+    @Transactional
     public Mono<ServerResponse> modifyEmployee(ServerRequest req) {
+        log.info("modifyEmployee invoked.");
         return Mono.zip(
                     (data) -> {
                         Employee emp1 = (Employee) data[0];
@@ -61,7 +66,7 @@ public class EmployeeHandler {
                     req.bodyToMono(Employee.class)
                 )
                 .cast(Employee.class)
-                .flatMap(emp -> repo.save(emp))
+                .flatMap(repo::save)
                 .flatMap(emp -> created(URI.create("/v1/employee/" + emp.getSeq())).build());
     }
 
