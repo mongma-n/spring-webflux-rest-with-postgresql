@@ -9,6 +9,7 @@ Spring Reactive Stack 중 Java 기준으로 Functional Endpoints 를 사용하�
 * CORS
 * Validation
 * WebClient
+* ~~WebFluxTest JUnit~~
 * Cache Control
 ```
 
